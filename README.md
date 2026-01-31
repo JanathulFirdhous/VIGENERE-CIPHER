@@ -1,6 +1,7 @@
 # VIGENERE-CIPHER
 ## EX. NO: 4
- 
+# Name:Janathul Firdhous A
+# Reg no:212224040129
 
 ## IMPLEMETATION OF VIGENERE CIPHER
  
@@ -30,7 +31,70 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <string.h>
+void vigenereEncrypt(char text[], const char key[])
+{
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+    int i;
 
+    for (i = 0; i < textLen; i++)
+    {
+        char c = text[i];
+
+        if (c >= 'A' && c <= 'Z')
+        {
+            text[i] = ((c - 'A' + key[i % keyLen] - 'A') % 26) + 'A';
+        }
+        else if (c >= 'a' && c <= 'z')
+        {
+            text[i] = ((c - 'a' + key[i % keyLen] - 'A') % 26) + 'a';
+        }
+    }
+}
+
+void vigenereDecrypt(char text[], const char key[])
+{
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+    int i;
+
+    for (i = 0; i < textLen; i++)
+    {
+        char c = text[i];
+
+        if (c >= 'A' && c <= 'Z')
+        {
+            text[i] = ((c - 'A' - (key[i % keyLen] - 'A') + 26) % 26) + 'A';
+        }
+        else if (c >= 'a' && c <= 'z')
+        {
+            text[i] = ((c - 'a' - (key[i % keyLen] - 'A') + 26) % 26) + 'a';
+        }
+    }
+}
+
+int main()
+{
+    const char *key = "KEY";   /* Encryption key */
+    char message[] = "Thisisasecretmessage";
+
+    /* Encrypt the message */
+    vigenereEncrypt(message, key);
+    printf("Encrypted Message: %s\n", message);
+
+    /* Decrypt the message */
+    vigenereDecrypt(message, key);
+    printf("Decrypted Message: %s\n", message);
+
+    return 0;
+}
+
+```
 ## OUTPUT
+<img width="1919" height="1070" alt="image" src="https://github.com/user-attachments/assets/e4b3d84a-9a76-4921-a230-09e7e2c926db" />
 
 ## RESULT
+The program is executed successfully
